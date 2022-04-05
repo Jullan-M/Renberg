@@ -1,0 +1,35 @@
+{
+  "title": "Roller",
+  "description": "Her kan du velge roller ved å reagere denne meldingen med de tilsvarende emojiene listet under. Rollene er enten bare kosmetiske eller gir deg tilgang til kanaler som du kanskje kan være interessert i.",
+  "_comment": "Use this tool to make convert text with linebreaks to \n: https://codepen.io/jsnelders/pen/qBByqQy",
+  "author": "",
+  "color": 16359196,
+  "thumbnail": {
+    "url": "https://cdn.discordapp.com/attachments/451040297074294796/960942329047449600/Asset_654x.png"
+  },
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/451040297074294796/960941674572427295/Asset_834x.png"
+  },
+  "footer": {
+    "text": "Noereh",
+    "icon_url": "https://cdn.discordapp.com/attachments/451040297074294796/960942563978797096/positiv_yellow.png",
+    "url": "https://www.noereh.no/"
+  },
+  "fields": [
+    {
+      "name": "Kosmetiske roller",
+      "value": "🔴 Nordsamisk\n🟢 Lulesamisk\n🟡 Sørsamisk\n📘 Lærer samisk\n🗣️ Snakker samisk flytende\n👨 Han/Ham\n👩 Hun/Henne\n🧑 De/Dem\n🧓 Alder 18+\n🧒 Alder <18",
+      "inline": true
+    },
+    {
+      "name": "Kanalroller",
+      "value": "🎶 Musikkinteressert\n📰 Samiske nyheter",
+      "inline": true
+    },
+    {
+      "name": "<a:noereh_heart:959201685723549717> Medlemsrolle",
+      "value": "Du kan få tilgang til flere kanaler hvis du er medlem eller støttemedlem i Noereh. Send en melding med ditt fulle navn til en som med er i Noereh styret slik at de kan ordne medlemsrollen til deg!",
+      "inline": false
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Hello",
+  "description": "Hello World\nThis is very long so it needs to have line breaks.\n\nHave fun!",
+  "_comment": "Use this tool to make convert text with linebreaks to \n: https://codepen.io/jsnelders/pen/qBByqQy",
+  "author": "Me",
+  "color": 0,
+  "thumbnail": { "url": "link" },
+  "image": { "url": "link" },
+  "footer": { "text": "Footer", "icon_url": "url" },
+  "fields": [
+    { "name": "Field 1", "value": "Values, this can be long", "inline": true }
+  ]
+}
