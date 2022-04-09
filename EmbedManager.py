@@ -111,7 +111,7 @@ class EmbedManager(commands.Cog, name='EmbedManager'):
                 break
 
     @commands.command(name='create_embed', help="Creates an embed based on a json file.")
-    async def create_embed(self, ctx, channel_id: int):
+    async def create_embed(self, ctx, channel_id: int = None):
         if not ctx.message.attachments:
             await ctx.send("You need to attach a valid json file.")
         try:
@@ -121,10 +121,15 @@ class EmbedManager(commands.Cog, name='EmbedManager'):
         except ValueError:
             await ctx.send("The file was not a valid json file.")
             return
-        
-        channel = self.bot.get_channel(channel_id)
+
         embed = discord.Embed.from_dict(json_code)
-        await channel.send(embed=embed)
+
+        if channel_id:
+            channel = self.bot.get_channel(channel_id)
+            await channel.send(embed=embed)
+        else:
+            await ctx.send(embed=embed)
+            
 
     @commands.command(name='edit_embed', help="Edit an already existing embed based on a json file.")
     async def edit_embed(self, ctx, channel_id: int, message_id: int):
