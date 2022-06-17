@@ -1,12 +1,15 @@
 import asyncio
+import os
 import discord
 import json
 import feedparser
 import datetime
+from dotenv import load_dotenv
 from time import mktime
 from discord.ext import commands, tasks
 from utilities import load_json
 
+load_dotenv(dotenv_path='.env')
 LANGS = ["sme", "smj", "sma"]
 
 def parse_feed(url: str, cat: str = "") -> list:
@@ -71,33 +74,33 @@ def update_feed_and_create_embeds(last_time: int, category: dict):
 
 
 class NewsUpdater(commands.Cog, name='NewsUpdater'):
-    def __init__(self, bot, channel_id: int):
+    def __init__(self, bot, channel_id: int = 0):
         self.bot = bot
-        self.channel_id = channel_id
+        self.channel_id = channel_id if channel_id != 0 else int(os.getenv('NEWS_CHANNEL_ID'))
         self.newsfeeds = load_json("config/newsfeeds.json")
+        if (self.newsfeeds["last_time"] == -1):
+            # If last_time has never been updated, update it to the current unix timestamp
+            # so that the bot doesn't spam the newsfeed channel with news on the first-time run.
+            self.newsfeeds["last_time"] = int(mktime(datetime.datetime.now().timetuple()))
         self.check_and_send_news_embeds.start()
 
     @tasks.loop(minutes=5)
     async def check_and_send_news_embeds(self):
-        try:
-            to_send = []
-            for lang in LANGS:
-                e_pairs = update_feed_and_create_embeds(self.newsfeeds["last_time"], self.newsfeeds[lang])
-                to_send.extend(e_pairs)
+        to_send = []
+        for lang in LANGS:
+            e_pairs = update_feed_and_create_embeds(self.newsfeeds["last_time"], self.newsfeeds[lang])
+            to_send.extend(e_pairs)
 
-            to_send.sort(key=lambda pair: pair[1])
-            
-            if to_send:
-                self.newsfeeds["last_time"] = to_send[-1][1]
+        to_send.sort(key=lambda pair: pair[1])
+        
+        if to_send:
+            self.newsfeeds["last_time"] = to_send[-1][1]
 
-                with open("config/newsfeeds.json", "w", encoding="utf-8") as f:
-                    f.write(json.dumps(self.newsfeeds, indent="\t", ensure_ascii=False))
-                message_channel = self.bot.get_channel(self.channel_id)
-                for embed, t in to_send:
-                    await message_channel.send(embed=embed)
-        except Exception as err:
-            print(err)
-            exit(1)
+            with open("config/newsfeeds.json", "w", encoding="utf-8") as f:
+                f.write(json.dumps(self.newsfeeds, indent="\t", ensure_ascii=False))
+            message_channel = self.bot.get_channel(self.channel_id)
+            for embed, t in to_send:
+                await message_channel.send(embed=embed)
 
     @check_and_send_news_embeds.before_loop
     async def before_check(self):

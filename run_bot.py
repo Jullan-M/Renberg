@@ -14,7 +14,7 @@ NEWS_CHANNEL_ID = int(os.getenv('NEWS_CHANNEL_ID'))
 
 bot = commands.Bot(command_prefix="]")
 bot.add_cog(EmbedManager(bot))
-#bot.add_cog(NewsUpdater(bot, NEWS_CHANNEL_ID))
+bot.add_cog(NewsUpdater(bot))
 
 def is_guild_owner():
     def predicate(ctx):
