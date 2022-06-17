@@ -1,14 +1,12 @@
 import asyncio
+from email import message
 import discord
 import json
 import re
 import requests
 from discord.ext import commands
+from utilities import load_json
 
-def load_json(filename: str):
-    with open(filename, "r", encoding="utf-8") as f:
-        js = json.load(f)
-    return js
 
 MAX_EMBED_LENGTH = 4096
 MULTIPAGE_TIMEOUT = 900 # Timeout period for page flipping with reacts
@@ -132,7 +130,7 @@ class EmbedManager(commands.Cog, name='EmbedManager'):
             
 
     @commands.command(name='edit_embed', help="Edit an already existing embed based on a json file.")
-    async def edit_embed(self, ctx, channel_id: int, message_id: int):
+    async def edit_embed(self, ctx, message_link : str):
         if not ctx.message.attachments:
             await ctx.send("You need to attach a valid json file.")
         try:
@@ -143,6 +141,8 @@ class EmbedManager(commands.Cog, name='EmbedManager'):
             await ctx.send("The file was not a valid json file.")
             return
         
+        channel_id, message_id = message_link.rsplit("/")[-2:]
+        channel_id, message_id = int(channel_id), int(message_id)
         channel = self.bot.get_channel(channel_id)
         msg = await channel.fetch_message(message_id)
         embed = discord.Embed.from_dict(json_code)

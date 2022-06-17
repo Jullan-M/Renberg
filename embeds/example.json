@@ -2,7 +2,11 @@
   "title": "Hello",
   "description": "Hello World\nThis is very long so it needs to have line breaks.\n\nHave fun!",
   "_comment": "Use this tool to make convert text with linebreaks to \n: https://codepen.io/jsnelders/pen/qBByqQy",
-  "author": "Me",
+  "author": {
+    "name": "Me",
+    "url": "link",
+    "icon_url": "icon_url"
+  },
   "color": 0,
   "thumbnail": { "url": "link" },
   "image": { "url": "link" },

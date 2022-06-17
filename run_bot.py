@@ -6,12 +6,15 @@ from loguru import logger
 from dotenv import load_dotenv
 from discord.ext import commands
 from EmbedManager import EmbedManager
+from NewsUpdater import NewsUpdater
 
 load_dotenv(dotenv_path='.env')
 TOKEN = os.getenv('DISCORD_TOKEN')
+NEWS_CHANNEL_ID = int(os.getenv('NEWS_CHANNEL_ID'))
 
 bot = commands.Bot(command_prefix="]")
 bot.add_cog(EmbedManager(bot))
+#bot.add_cog(NewsUpdater(bot, NEWS_CHANNEL_ID))
 
 def is_guild_owner():
     def predicate(ctx):

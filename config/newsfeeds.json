@@ -1,0 +1,27 @@
+{
+	"sme": {
+		"name": "Ođđasat - Davvisámegillii",
+		"rss": "https://www.nrk.no/sapmi/oddasat.rss",
+		"url": "https://www.nrk.no/sapmi/davvisamegillii/",
+		"icon_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/NRK_Nyheter.png",
+		"thumbnail": "https://gfx.nrk.no/gZwThpgdL-Qz2d2vi4gmRgYbOu3JSsf5irb14IWJSTSA.jpg",
+		"color": 43991
+	},
+	"smj": {
+		"name": "Ådåsa - Julevsábmáj",
+		"rss": "https://www.nrk.no/sapmi/oddasat.rss",
+		"url": "https://www.nrk.no/sapmi/julevsabmaj/",
+		"icon_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/NRK_Nyheter.png",
+		"thumbnail": "https://gfx.nrk.no/Wez_ogUZn5w0ix-ZADnK4wbXIGKL5NSaXYCt6o-6NIuQ.jpg",
+		"color": 15818027
+	},
+	"sma": {
+		"name": "Saernie - Åarjelsaemien",
+		"rss": "https://www.nrk.no/sapmi/oddasat.rss",
+		"url": "https://www.nrk.no/sapmi/aaarjelsaemiengielesne/",
+		"icon_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/NRK_Nyheter.png",
+		"thumbnail": "https://gfx.nrk.no/fTfaoOzwoqyfCbKOJ1ZvmwVlo1IUMYNxb5znLgi_g3EQ.jpg",
+		"color": 5942849
+	},
+	"last_time": 1654950587
+}
