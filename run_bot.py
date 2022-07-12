@@ -2,6 +2,7 @@ import asyncio
 import os
 import sys
 import click
+import discord
 from loguru import logger
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -12,7 +13,13 @@ load_dotenv(dotenv_path='.env')
 TOKEN = os.getenv('DISCORD_TOKEN')
 NEWS_CHANNEL_ID = int(os.getenv('NEWS_CHANNEL_ID'))
 
-bot = commands.Bot(command_prefix="]")
+# Configure intents
+intents = discord.Intents.default()
+intents.message_content = True
+intents.presences = True
+intents.members = True
+
+bot = commands.Bot(command_prefix=']', intents = intents)
 bot.add_cog(EmbedManager(bot))
 bot.add_cog(NewsUpdater(bot))
 
