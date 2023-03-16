@@ -1,3 +1,6 @@
+py-cord
+python-dotenv
+requests
 click
 loguru
-py-cord
+feedparser
