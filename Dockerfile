@@ -1,6 +1,5 @@
 FROM python:3.8
 COPY *.py ./
-COPY .env ./
 COPY config/*.json config/
 COPY embeds/*.json embeds/
 COPY requirements.txt .

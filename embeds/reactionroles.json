@@ -1,6 +1,6 @@
 {
   "title": "Roller",
-  "description": "Her kan du velge roller ved å reagere denne meldingen med de tilsvarende emojiene listet under. Rollene er enten bare kosmetiske eller gir deg tilgang til kanaler som du kanskje kan være interessert i.",
+  "description": "Her kan du velge roller ved å reagere på denne meldingen med de tilsvarende emojiene listet under. Rollene er enten bare kosmetiske eller gir deg tilgang til kanaler som du kanskje kan være interessert i.",
   "_comment": "Use this tool to make convert text with linebreaks to \n: https://codepen.io/jsnelders/pen/qBByqQy",
   "author": "",
   "color": 16359196,
@@ -18,18 +18,13 @@
   "fields": [
     {
       "name": "Kosmetiske roller",
-      "value": "🔴 Nordsamisk\n🟢 Lulesamisk\n🟡 Sørsamisk\n📘 Lærer samisk\n🗣️ Snakker samisk flytende\n👨 Han/Ham\n👩 Hun/Henne\n🧑 De/Dem\n🧓 Alder 18+\n🧒 Alder <18",
+      "value": "🔴 Nordsamisk\n🟢 Lulesamisk\n🟡 Sørsamisk\n📘 Lærer samisk\n🗣️ Snakker samisk flytende\n👨 Han/Ham\n👩 Hun/Henne\n🧑 De/Dem",
       "inline": true
     },
     {
       "name": "Kanalroller",
-      "value": "🎶 Musikkinteressert\n📰 Samiske nyheter",
+      "value": "🎶 Musikkinteressert\n📰 Samiske nyheter\n🎮 Gaming\n🔠 [Šordle](https://folk.ntnu.no/jmlindi/) entusiast",
       "inline": true
-    },
-    {
-      "name": "<a:noereh_heart:959201685723549717> Medlemsrolle",
-      "value": "Du kan få tilgang til flere kanaler hvis du er medlem eller støttemedlem i Noereh. Send en melding med ditt fulle navn til en som med er i Noereh styret slik at de kan ordne medlemsrollen til deg!",
-      "inline": false
     }
   ]
 }
