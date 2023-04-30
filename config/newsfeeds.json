@@ -23,5 +23,13 @@
     "thumbnail": "https://gfx.nrk.no/fTfaoOzwoqyfCbKOJ1ZvmwVlo1IUMYNxb5znLgi_g3EQ.jpg",
     "color": 5942849
   },
+  "nob": {
+    "name": "Ođđasat - norsk",
+    "rss": "https://www.nrk.no/sapmi/oddasat.rss",
+    "url": "https://www.nrk.no/sapmi/nyheter/",
+    "icon_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/NRK_Nyheter.png",
+    "thumbnail": "",
+    "color": 43991
+  },
   "last_time": -1
 }
