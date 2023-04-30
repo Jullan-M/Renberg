@@ -94,13 +94,15 @@ def update_feed_and_create_embeds(last_time: int, category: dict):
 
 
 class NewsUpdater(commands.Cog, name="NewsUpdater"):
-    def __init__(self, bot, channel_id: int = 0, anno_channel_id):
+    def __init__(self, bot, channel_id: int = 0, anno_channel_id: int = 0):
         self.bot = bot
         self.channel_id = (
             channel_id if channel_id != 0 else int(os.getenv("NEWS_CHANNEL_ID"))
         )
         self.anno_channel_id = (
-            anno_channel_id if anno_channel_id != 0 else int(os.getenv("ANNO_CHANNEL_ID"))
+            anno_channel_id
+            if anno_channel_id != 0
+            else int(os.getenv("ANNO_CHANNEL_ID"))
         )
         self.newsfeeds = load_json("config/newsfeeds.json")
         if self.newsfeeds["last_time"] == -1:
@@ -111,7 +113,7 @@ class NewsUpdater(commands.Cog, name="NewsUpdater"):
             )
         self.check_and_send_news_embeds.start()
 
-    @tasks.loop(minutes=5)
+    @tasks.loop(minutes=10)
     async def check_and_send_news_embeds(self):
         to_send = []
         for lang in LANGS:
@@ -138,16 +140,15 @@ class NewsUpdater(commands.Cog, name="NewsUpdater"):
             message_channel = self.bot.get_channel(self.channel_id)
             for embed, t in to_send:
                 await message_channel.send(embed=embed)
-        
+
         if announcements:
             self.newsfeeds["last_time"] = to_send[-1][1]
 
             with open("config/newsfeeds.json", "w", encoding="utf-8") as f:
                 f.write(json.dumps(self.newsfeeds, indent="\t", ensure_ascii=False))
             message_channel = self.bot.get_channel(self.anno_channel_id)
-            for embed, t in to_send:
+            for embed, t in announcements:
                 await message_channel.send(embed=embed)
-
 
     @check_and_send_news_embeds.before_loop
     async def before_check(self):
