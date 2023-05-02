@@ -142,7 +142,7 @@ class NewsUpdater(commands.Cog, name="NewsUpdater"):
                 await message_channel.send(embed=embed)
 
         if announcements:
-            self.newsfeeds["last_time"] = to_send[-1][1]
+            self.newsfeeds["last_time"] = announcements[-1][1]
 
             with open("config/newsfeeds.json", "w", encoding="utf-8") as f:
                 f.write(json.dumps(self.newsfeeds, indent="\t", ensure_ascii=False))
