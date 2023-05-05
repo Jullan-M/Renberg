@@ -26,15 +26,15 @@ def parse_feed(url: str, cat: str = "") -> list:
                 if cat == "Sápmi":  # YLE sme needs special treatment
                     if not any([c in cats for c in ["Säämi", "Sää´mjânnam"]]):
                         valid_entries.append(e)
+                elif cat == "Ođđasat - norsk":
+                    # Only post news that mention Noereh in announcement
+                    if cat in cats and ("Noereh" in e.summary or "Noereh" in e.title):
+                        valid_entries.append(e)
                 elif cat in cats:
                     valid_entries.append(e)
             elif cat == "Ođđasat - Davvisámegillii":
                 # If entry has no tags the NRK article is sme.
                 valid_entries.append(e)
-            elif cat == "Ođđasat - norsk":
-                # Only post news that mention Noereh in announcement
-                if "Noereh" in e.summary or "Noereh" in e.title:
-                    valid_entries.append(e)
         return valid_entries
     return entries
 
