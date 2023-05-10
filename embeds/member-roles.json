@@ -20,16 +20,6 @@
       "name": "<a:noereh_heart:959201685723549717> Medlemsrolle",
       "value": "Du kan få tilgang til flere kanaler hvis du er en betalende medlem eller støttemedlem i Noereh. Send en melding med ditt fulle navn til en som med er i Noereh styret slik at de kan ordne medlemsrollen til deg! \n[Meld deg inn i Noereh!](https://www.noereh.no/bli-medlem#:~:text=Fyll%20ut%20skjema%2C%20s%C3%A5%20er%20du%20med)",
       "inline": false
-    },
-    {
-      "name": "<:n_square:1090296575462490164> Styremedlem",
-      "value": "Noereh styret har flere kanaler som blir brukt til styremøter, planlegging og kommunikasjon innad i styret. Dersom du vil bli med så må du gjerne [søke om bli med i styret](https://www.noereh.no/bli-styremedlem) til neste styreperiode.",
-      "inline": false
-    },
-    {
-      "name": "<:saminuorra:1100549883238285413> Are you in another Sámi youth organization? <:SSN:1100549510394032218>",
-      "value": "If you're a member in one of our sister organizations, [@Sáminuorra](https://www.saminuorra.org/) (Sweden) or [@Suoma Sámi Nuorat](https://ssn.fi/) (Finland), you are elligible to get a member role corresponding to your organization and have access to the same channels as Noereh members. Send a message someone in @Styret in order get access!",
-      "inline": false
     }
   ]
 }
