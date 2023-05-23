@@ -10,15 +10,11 @@
   "image": {
     "url": "https://cdn.discordapp.com/attachments/451040297074294796/960941674572427295/Asset_834x.png"
   },
-  "footer": {
-    "text": "Noereh",
-    "icon_url": "https://cdn.discordapp.com/attachments/451040297074294796/960942563978797096/positiv_yellow.png",
-    "url": "https://www.noereh.no/"
-  },
+  "footer": {},
   "fields": [
     {
       "name": "Kosmetiske roller",
-      "value": "🔴 Nordsamisk\n🟢 Lulesamisk\n🟡 Sørsamisk\n📘 Lærer samisk\n🗣️ Snakker samisk flytende\n👨 Han/Ham\n👩 Hun/Henne\n🧑 De/Dem",
+      "value": "🔴 Nordsamisk\n🟢 Lulesamisk\n🟡 Sørsamisk\n📘 Lærer samisk\n🗣️ Snakker samisk flytende\n👨 Han/Ham\n👩 Hun/Henne\n🧑 De/Dem\n 👱 Hen",
       "inline": true
     },
     {

@@ -13,7 +13,6 @@ from NewsUpdater import NewsUpdater
 
 load_dotenv(dotenv_path=".env")
 TOKEN = os.getenv("DISCORD_TOKEN")
-NEWS_CHANNEL_ID = int(os.getenv("NEWS_CHANNEL_ID"))
 
 # Configure intents
 intents = discord.Intents.default()
