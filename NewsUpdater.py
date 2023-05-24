@@ -104,7 +104,10 @@ class NewsUpdater(commands.Cog, name="NewsUpdater"):
             if anno_channel_id != 0
             else int(os.getenv("ANNO_CHANNEL_ID"))
         )
-        self.newsfeeds = load_json("config/newsfeeds.json")
+
+        with open("config/newsfeeds.json", "r", encoding="utf-8") as f:
+            self.newsfeeds = json.load(f)
+
         if self.newsfeeds["last_time"] == -1:
             # If last_time has never been updated, update it to the current unix timestamp
             # so that the bot doesn't spam the newsfeed channel with news on the first-time run.
