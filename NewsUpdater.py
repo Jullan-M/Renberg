@@ -9,8 +9,6 @@ import feedparser
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
-from utilities import load_json
-
 load_dotenv(dotenv_path=".env")
 LANGS = ["sme", "smj", "sma"]
 
