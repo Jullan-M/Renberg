@@ -4,3 +4,4 @@ requests
 click
 loguru
 feedparser
+instagrapi

@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from loguru import logger
 
 from EmbedManager import EmbedManager
+from InstaReposter import InstaReposter
 from NewsUpdater import NewsUpdater
 
 load_dotenv(dotenv_path=".env")
@@ -23,6 +24,7 @@ intents.members = True
 bot = commands.Bot(command_prefix="]", intents=intents)
 bot.add_cog(EmbedManager(bot))
 bot.add_cog(NewsUpdater(bot))
+bot.add_cog(InstaReposter(bot))
 
 
 def is_guild_owner():

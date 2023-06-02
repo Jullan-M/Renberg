@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=".env")
 LANGS = ["sme", "smj", "sma"]
+ANNOS = ["nob"]
 
 
 def parse_feed(url: str, cat: str = "") -> list:
@@ -54,9 +55,9 @@ def create_embed(entry, category: dict):
     try:
         timestamp = datetime.datetime.fromtimestamp(mktime(entry.published_parsed))
         embed = discord.Embed(
-            title=entry.title,
+            title=entry.get("title", ""),
             url=entry.link,
-            description=entry.summary,
+            description=entry.get("summary", ""),
             color=category["color"],
             timestamp=timestamp,
         )
@@ -124,9 +125,9 @@ class NewsUpdater(commands.Cog, name="NewsUpdater"):
             to_send.extend(e_pairs)
 
         announcements = []
-        if "nob" in self.newsfeeds:
+        for feed in ANNOS:
             e_pairs = update_feed_and_create_embeds(
-                self.newsfeeds["last_time"], self.newsfeeds["nob"]
+                self.newsfeeds["last_time"], self.newsfeeds[feed]
             )
             announcements.extend(e_pairs)
 
@@ -153,9 +154,9 @@ class NewsUpdater(commands.Cog, name="NewsUpdater"):
 
     @check_and_send_news_embeds.before_loop
     async def before_check(self):
-        print("Waiting for bot to be ready before printing news...")
+        print("Waiting for bot to be ready before printing rss news...")
         await self.bot.wait_until_ready()
-        print("Ready")
+        print("Ready to post rss feeds")
 
 
 def setup(bot):
