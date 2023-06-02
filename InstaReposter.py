@@ -85,15 +85,14 @@ class InstaReposter(commands.Cog, name="InstaReposter"):
         file_path = None
         if media.media_type == 1:
             file_path = self.cl.photo_download(media.pk, "data")
-            embed.set_image(url=f"attachment://{filename}")
+            embed.set_image(url=f"attachment://{file_path.name}")
         elif media.media_type == 2:
             file_path = self.cl.video_download(media.pk, "data")
         elif media.media_type == 8:
             file_path = self.cl.photo_download(media.resources[0].pk, "data")
-            embed.set_image(url=f"attachment://{filename}")
+            embed.set_image(url=f"attachment://{file_path.name}")
 
-        filename = file_path.name
-        discord_file = discord.File(file_path, filename=filename)
+        discord_file = discord.File(file_path, filename=file_path.name)
 
         return embed, discord_file
 
@@ -133,7 +132,7 @@ class InstaReposter(commands.Cog, name="InstaReposter"):
             message_channel = self.bot.get_channel(channel_id)
             await message_channel.send(file=discord_file, embed=embed)
         else:
-            ctx.send(file=discord_file, embed=embed)
+            await ctx.send(file=discord_file, embed=embed)
 
 
 def setup(bot):
