@@ -13,10 +13,10 @@ from instagrapi import Client
 load_dotenv(dotenv_path=".env")
 
 NOEREH_COLORS = [8373350, 16569858, 15677476, 16359196, 16233938, 10207719, 14005905]
-LOGIN_SESSION_FILE = "config/session.json"
-RAND_DELAY_RANGE = [1, 10]
-LOOP_MINUTES = 10
-FEED_LENGTH = 11
+LOGIN_SESSION_FILE = "data/session.json"
+RAND_DELAY_RANGE = [5, 120]
+LOOP_MINUTES = 30
+FEED_LENGTH = 5
 
 
 def filter_new_medias(medias: list, last_time: int) -> list:
@@ -42,10 +42,12 @@ class InstaReposter(commands.Cog, name="InstaReposter"):
             self.cl.load_settings(LOGIN_SESSION_FILE)
         except FileNotFoundError:
             self.cl.login(self.username, os.getenv("INSTA_PASS"))
-            self.cl.dump_settings(LOGIN_SESSION_FILE)
+            try:
+                os.mkdir(LOGIN_SESSION_FILE.split("/")[0])
+            finally:
+                self.cl.dump_settings(LOGIN_SESSION_FILE)
         else:
             self.cl.login(self.username, os.getenv("INSTA_PASS"))
-
         self.cl.delay_range = RAND_DELAY_RANGE
 
         self.anno_channel_id = (
@@ -63,13 +65,22 @@ class InstaReposter(commands.Cog, name="InstaReposter"):
         self.check_and_send_insta_embeds.start()
 
     def create_embed(self, media):
-        # Creates an embed object that can be sent in discord
+        ## Creates an embed object that can be sent in discord ##
         print(f"Handling media: {media.code}")
         time_data = media.taken_at
         username = media.user.username
         full_name = media.user.full_name
+
+        post_text = ""
+        if media.media_type == 1:
+            post_text = "et bilde"
+        elif media.media_type == 2:
+            post_text = "en video"
+        elif media.media_type == 8:
+            post_text = "et bildealbum"
+
         embed = discord.Embed(
-            title=f"@{username} på instagram",
+            title=f"@{username} har postet {post_text} på instagram",
             url=f"https://www.instagram.com/p/{media.code}",
             description=media.caption_text,
             color=choice(NOEREH_COLORS),
@@ -81,18 +92,27 @@ class InstaReposter(commands.Cog, name="InstaReposter"):
             url=f"https://www.instagram.com/{username}/",
             icon_url="https://cdn.sanity.io/images/g3qdmru2/production/016074ca8a2fbcdeed29522b3b236c37f056cffa-2400x2400.jpg?w=256&h=256",
         )
+
+        ## Download media and attach it as discord file ##
         # media_type: 1- photo, 2- video, IGTV, Reel, 8- album
+        # Sometimes the image format is .heic. Just rename the file ending to .png.
         file_path = None
         if media.media_type == 1:
             file_path = self.cl.photo_download(media.pk, "data")
-            embed.set_image(url=f"attachment://{file_path.name}")
+            embed.set_image(
+                url=f"attachment://{file_path.name.replace('.heic', '.png')}"
+            )
         elif media.media_type == 2:
             file_path = self.cl.video_download(media.pk, "data")
         elif media.media_type == 8:
             file_path = self.cl.photo_download(media.resources[0].pk, "data")
-            embed.set_image(url=f"attachment://{file_path.name}")
+            embed.set_image(
+                url=f"attachment://{file_path.name.replace('.heic', '.png')}"
+            )
 
-        discord_file = discord.File(file_path, filename=file_path.name)
+        discord_file = discord.File(
+            file_path, filename=file_path.name.replace(".heic", ".png")
+        )
 
         return embed, discord_file
 
