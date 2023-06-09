@@ -5,3 +5,4 @@ click
 loguru
 feedparser
 instagrapi
+Pillow
