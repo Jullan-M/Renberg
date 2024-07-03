@@ -1,8 +1,6 @@
 py-cord
 python-dotenv
 requests
-click
-loguru
 feedparser
 instagrapi
 Pillow

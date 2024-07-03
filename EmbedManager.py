@@ -5,7 +5,7 @@ from email import message
 
 import discord
 import requests
-from discord.ext import commands
+from discord.ext import bridge, commands
 
 MAX_EMBED_LENGTH = 4096
 MULTIPAGE_TIMEOUT = 900  # Timeout period for page flipping with reacts
@@ -130,7 +130,7 @@ class EmbedManager(commands.Cog, name="EmbedManager"):
                 await last_message.clear_reactions()
                 break
 
-    @commands.command(
+    @bridge.bridge_command(
         name="create_embed", help="Creates an embed based on a json file."
     )
     async def create_embed(self, ctx, channel_id: int = None):
@@ -152,7 +152,7 @@ class EmbedManager(commands.Cog, name="EmbedManager"):
         else:
             await ctx.send(embed=embed)
 
-    @commands.command(
+    @bridge.bridge_command(
         name="edit_embed", help="Edit an already existing embed based on a json file."
     )
     async def edit_embed(self, ctx, message_link: str):

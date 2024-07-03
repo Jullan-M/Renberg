@@ -6,7 +6,7 @@ from time import mktime
 
 import discord
 import feedparser
-from discord.ext import commands, tasks
+from discord.ext import bridge, commands, tasks
 from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=".env")

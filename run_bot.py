@@ -2,14 +2,13 @@ import asyncio
 import os
 import sys
 
-import click
 import discord
-from discord.ext import commands
+from discord.ext import bridge, commands
 from dotenv import load_dotenv
-from loguru import logger
 
 from EmbedManager import EmbedManager
-from InstaReposter import InstaReposter
+
+# from InstaReposter import InstaReposter
 from NewsUpdater import NewsUpdater
 
 load_dotenv(dotenv_path=".env")
@@ -21,10 +20,10 @@ intents.message_content = True
 intents.presences = True
 intents.members = True
 
-bot = commands.Bot(command_prefix="]", intents=intents)
+bot = bridge.Bot(command_prefix="]", intents=intents)
 bot.add_cog(EmbedManager(bot))
 bot.add_cog(NewsUpdater(bot))
-bot.add_cog(InstaReposter(bot))
+# bot.add_cog(InstaReposter(bot))
 
 
 def is_guild_owner():
@@ -34,35 +33,21 @@ def is_guild_owner():
     return commands.check(predicate)
 
 
-@bot.command(name="add_cog")
+@bot.bridge_command(name="add_cog")
 @commands.check_any(commands.is_owner(), is_guild_owner())
 async def add_cog(ctx, cog_name: str):
     bot.load_extension(cog_name)
-    logger.success(f"Loaded cog: {cog_name}")
     await ctx.send(f"Added cog {cog_name}.")
 
 
-@bot.command(name="remove_cog")
+@bot.bridge_command(name="remove_cog")
 @commands.check_any(commands.is_owner(), is_guild_owner())
 async def remove_cog(ctx, cog_name: str):
     bot.remove_cog(cog_name)
-    logger.success(f"Removed cog: {cog_name}")
     await ctx.send(f"Removed cog {cog_name}.")
 
 
-@click.command()
-@click.option(
-    "-d",
-    "--debug",
-    is_flag=True,
-    help="Enable debug mode. Prints debug messages to the console.",
-)
-def main(debug: bool):
-    if not debug:
-        # Default loguru level is DEBUG
-        logger.remove()
-        logger.add(os.sys.stderr, level="INFO")
-
+def main():
     bot.run(TOKEN)
 
 
